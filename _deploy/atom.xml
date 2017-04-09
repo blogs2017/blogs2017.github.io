@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[My Octopress Blog]]></title>
+  <link href="http://blogs2017.github.io/atom.xml" rel="self"/>
+  <link href="http://blogs2017.github.io/"/>
+  <updated>2017-04-09T16:07:43+08:00</updated>
+  <id>http://blogs2017.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[更新测试]]></title>
+    <link href="http://blogs2017.github.io/blog/2017/04/09/text/"/>
+    <updated>2017-04-09T14:17:49+08:00</updated>
+    <id>http://blogs2017.github.io/blog/2017/04/09/text</id>
+    <content type="html"><![CDATA[<h1>测试</h1>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Java中常用的代码汇总]]></title>
+    <link href="http://blogs2017.github.io/blog/2017/04/09/java/"/>
+    <updated>2017-04-09T14:17:49+08:00</updated>
+    <id>http://blogs2017.github.io/blog/2017/04/09/java</id>
+    <content type="html"><![CDATA[<h1>你好！JAVA</h1>
+
+<pre><code>1. 字符串有整型的相互转换
+</code></pre>
+
+<pre><code class="`">     String a = String.valueOf(2);   //integer to numeric string  
+    int i = Integer.parseInt(a); //numeric string to an int
+</code></pre>
+
+<p>  <!-- more --></p>
+
+<pre><code>2. 向文件末尾添加内容
+</code></pre>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>BufferedWriter out = null; 
+</span><span class='line'>try { 
+</span><span class='line'>  out = new BufferedWriter(new FileWriter(”filename”, true)); 
+</span><span class='line'>           out.write(”aString”); 
+</span><span class='line'>} catch (IOException e) { 
+</span><span class='line'>  // error processing code 
+</span><span class='line'>} finally { 
+</span><span class='line'>           if (out != null) { 
+</span><span class='line'>out.close(); 
+</span><span class='line'>      } 
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<pre><code>3. 得到当前方法的名字 
+</code></pre>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();</span></code></pre></td></tr></table></div></figure>
+
+
+<pre><code>4. 转字符串到日期
+</code></pre>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>java.util.Date = java.text.DateFormat.getDateInstance().parse(date String);
+</span><span class='line'>或者是：
+</span><span class='line'>SimpleDateFormat format = new SimpleDateFormat( "dd.MM.yyyy" );  
+</span><span class='line'>Date date = format.parse( myString );</span></code></pre></td></tr></table></div></figure>
+
+
+<pre><code>5. 使用JDBC链接Oracle
+</code></pre>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>public class OracleJdbcTest 
+</span><span class='line'>{ 
+</span><span class='line'>  String driverClass = "oracle.jdbc.driver.OracleDriver"; 
+</span><span class='line'>   
+</span><span class='line'>  Connection con; 
+</span><span class='line'>   
+</span><span class='line'>  public void init(FileInputStream fs) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException 
+</span><span class='line'>  { 
+</span><span class='line'>    Properties props = new Properties(); 
+</span><span class='line'>    props.load(fs); 
+</span><span class='line'>    String url = props.getProperty("db.url"); 
+</span><span class='line'>    String userName = props.getProperty("db.user"); 
+</span><span class='line'>    String password = props.getProperty("db.password"); 
+</span><span class='line'>    Class.forName(driverClass); 
+</span><span class='line'>   
+</span><span class='line'>    con=DriverManager.getConnection(url, userName, password); 
+</span><span class='line'>  } 
+</span><span class='line'>   
+</span><span class='line'>  public void fetch() throws SQLException, IOException 
+</span><span class='line'>  { 
+</span><span class='line'>    PreparedStatement ps = con.prepareStatement("select SYSDATE from dual"); 
+</span><span class='line'>    ResultSet rs = ps.executeQuery(); 
+</span><span class='line'>   
+</span><span class='line'>    while (rs.next()) 
+</span><span class='line'>    { 
+</span><span class='line'>      // do the thing you do 
+</span><span class='line'>    } 
+</span><span class='line'>    rs.close(); 
+</span><span class='line'>    ps.close(); 
+</span><span class='line'>  } 
+</span><span class='line'>   
+</span><span class='line'>  public static void main(String[] args) 
+</span><span class='line'>  { 
+</span><span class='line'>    OracleJdbcTest test = new OracleJdbcTest(); 
+</span><span class='line'>    test.init(); 
+</span><span class='line'>    test.fetch(); 
+</span><span class='line'>  } 
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[HTML中常用的代码汇总]]></title>
+    <link href="http://blogs2017.github.io/blog/2017/04/09/html/"/>
+    <updated>2017-04-09T14:17:49+08:00</updated>
+    <id>http://blogs2017.github.io/blog/2017/04/09/html</id>
+    <content type="html"><![CDATA[<h1>你好！HTML</h1>
+
+<!-- more -->
+
+
+<p>文件类型<HTML></HTML> （放在档案的开头与结尾）</p>
+
+<p>　　文件主题<TITLE></TITLE> （必须放在「文头」区块内）</p>
+
+<p>　　文头<HEAD></HEAD> （描述性资料，像是「主题」）</p>
+
+<p>　　文体<BODY></BODY> （文件本体）</p>
+
+<p>　　标题&lt;H?>&lt;/H?> （从1到6，有六层选择）</p>
+
+<p>　　标题的对齐 &lt;H?ALIGN=LEFT|CENTER|RIGHT>&lt;/H?></p>
+
+<p>　　区分<DIV></DIV></p>
+
+<p>　　区分的对齐 &lt;DIVALIGN=LEFT|RIGHT|CENTER|JUSTIFY></DIV></p>
+
+<p>　　引文区块<BLOCKQUOTE></BLOCKQUOTE> （通常会内缩）</p>
+
+<p>　　强调<EM></EM> （通常会以斜体显示）</p>
+
+<p>　　特别强调<STRONG></STRONG> （通常会以加粗显示）</p>
+
+<p>　　引文<CITE></CITE> （通常会以斜体显示）</p>
+
+<p>　　码<CODE></CODE> （显示原始码之用）</p>
+
+<p>　　样本<SAMP></SAMP></p>
+
+<p>　　键盘输入<KBD></KBD></p>
+
+<p>　　变数<VAR></VAR></p>
+
+<p>　　定义<DFN></DFN> （有些浏览器不提供）</p>
+
+<p>　　地址 <ADDRESS></ADDRESS></p>
+
+<p>　　大字<BIG></BIG></p>
+
+<p>　　小字<SMALL></SMALL></p>
+
+<p>　　与外观相关的标签（作者自订的表现方式）</p>
+
+<p>　　加粗<B></B></p>
+
+<p>　　斜体<I></I></p>
+
+<p>　　底线<U></U> （尚有些浏览器不提供）</p>
+
+<p>　　删除线<S></S> （尚有些浏览器不提供）</p>
+
+<p>　　下标<SUB></SUB></p>
+
+<p>　　上标<SUP></SUP></p>
+
+<p>　　打字机体<TT></TT> （用单空格字型显示）</p>
+
+<p>　　预定格式<PRE></PRE> （保留文件中空格的大小）</p>
+
+<p>　　预定格式的宽度<PRE WIDTH=?></PRE>（以字元计算）</p>
+
+<p>　　向中看齐<CENTER></CENTER> （文字与图片都可以）</p>
+
+<p>　　闪耀<BLINK></BLINK> （有史以来最被嘲弄的标签）</p>
+
+<p>　　字体大小 &lt;FONTSIZE=?></FONT>（从1到7）</p>
+
+<p>　　改变字体大小 &lt;FONTSIZE=+|-?></FONT></p>
+
+<p>　　基本字体大小 &lt;BASEFONTSIZE=?> （从1到7; 内定为3）</p>
+
+<p>　　字体颜色 &lt;FONTCOLOR=&ldquo;#$$&rdquo;></FONT>（$$为颜色代码）</p>
+]]></content>
+  </entry>
+  
+</feed>
