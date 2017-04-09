@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Java | My Octopress Blog]]></title>
+  <link href="http://blogs2017.github.io/blog/categories/java/atom.xml" rel="self"/>
+  <link href="http://blogs2017.github.io/"/>
+  <updated>2017-04-09T15:45:15+08:00</updated>
+  <id>http://blogs2017.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Java中常用的代码汇总]]></title>
+    <link href="http://blogs2017.github.io/blog/2017/04/09/java/"/>
+    <updated>2017-04-09T14:17:49+08:00</updated>
+    <id>http://blogs2017.github.io/blog/2017/04/09/java</id>
+    <content type="html"><![CDATA[<h1>你好！JAVA</h1>
+
+<!-- more -->
+
+
+<pre><code>1. 字符串有整型的相互转换
+</code></pre>
+
+<pre><code class="`">     String a = String.valueOf(2);   //integer to numeric string  
+    int i = Integer.parseInt(a); //numeric string to an int
+</code></pre>
+
+<pre><code>2. 向文件末尾添加内容
+</code></pre>
+
+<pre><code>    BufferedWriter out = null; 
+    try { 
+      out = new BufferedWriter(new FileWriter(”filename”, true)); 
+             out.write(”aString”); 
+    } catch (IOException e) { 
+      // error processing code 
+    } finally { 
+             if (out != null) { 
+    out.close(); 
+        } 
+    }
+</code></pre>
+
+<pre><code>3. 得到当前方法的名字 
+</code></pre>
+
+<pre><code>String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+</code></pre>
+
+<pre><code>4. 转字符串到日期
+</code></pre>
+
+<pre><code>java.util.Date = java.text.DateFormat.getDateInstance().parse(date String);
+或者是：
+SimpleDateFormat format = new SimpleDateFormat( "dd.MM.yyyy" );  
+Date date = format.parse( myString );
+</code></pre>
+
+<pre><code>5. 使用JDBC链接Oracle
+</code></pre>
+
+<pre><code>public class OracleJdbcTest 
+{ 
+  String driverClass = "oracle.jdbc.driver.OracleDriver"; 
+
+  Connection con; 
+
+  public void init(FileInputStream fs) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException 
+  { 
+    Properties props = new Properties(); 
+    props.load(fs); 
+    String url = props.getProperty("db.url"); 
+    String userName = props.getProperty("db.user"); 
+    String password = props.getProperty("db.password"); 
+    Class.forName(driverClass); 
+
+    con=DriverManager.getConnection(url, userName, password); 
+  } 
+
+  public void fetch() throws SQLException, IOException 
+  { 
+    PreparedStatement ps = con.prepareStatement("select SYSDATE from dual"); 
+    ResultSet rs = ps.executeQuery(); 
+
+    while (rs.next()) 
+    { 
+      // do the thing you do 
+    } 
+    rs.close(); 
+    ps.close(); 
+  } 
+
+  public static void main(String[] args) 
+  { 
+    OracleJdbcTest test = new OracleJdbcTest(); 
+    test.init(); 
+    test.fetch(); 
+  } 
+}
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
